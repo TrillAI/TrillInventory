@@ -1,0 +1,106 @@
+/* Automatic photo matching is barcode-only, serialized, and independent of stock/pricing. */
+var autoPhotoQueue=[],autoPhotoJobs={},autoPhotoBusy=false,autoPhotoMessages={};
+var photoAttempts=lsGet('trill.photoAttempts',{});
+function photoBarcode(p){
+  var code=String(p.upc || '');
+  if(code.indexOf('manual-')===0 && p.identityReviewedAt)code=String(p.matchCode || '');
+  return /^(?:\d{8}|\d{12}|\d{13}|\d{14})$/.test(code) && checkDigitOK(code)!==false ? code : '';
+}
+function photoFingerprint(p){return JSON.stringify([p.name,p.brand,p.size,p.matchCode,p.identityReviewedAt,p.image,p.imageVerifiedAt,p.imageAutoBlocked,p.needsReview]);}
+function automaticPhotosAllowed(){return S.autoPhotos && S.netImages && onlineReady();}
+function eligibleAutoPhoto(p){return p && !p.needsReview && !p.imageVerifiedAt && !p.imageAutoBlocked && !(p.image && sameRetailBarcode(p.imageBarcode,photoBarcode(p)));}
+function photoCandidateURLs(identity,code,p){
+  if(!identity || !sameRetailBarcode(identity.barcode,code))return [];
+  if(packMismatch(p,{size:identity.size || parseSize(identity.name)}) || (isTobacco(p.name+' '+p.cat) && tobaccoWarnings(p.name+' '+p.size,{title:identity.name,size:identity.size}).length))return [];
+  var seen={};
+  return [identity.image].concat(identity.images || []).filter(function(url){
+    if(typeof url!=='string' || url.length>2048 || seen[url])return false;
+    try{var u=new URL(url);if(u.protocol!=='https:' || u.username || u.password)return false;}catch(e){return false;}
+    seen[url]=true;return true;
+  }).slice(0,3);
+}
+function loadPhotoURL(url){
+  return new Promise(function(resolve){
+    var img=new Image(),done=false;
+    function finish(ok){if(done)return;done=true;clearTimeout(timer);img.onload=img.onerror=null;resolve(ok);}
+    var timer=setTimeout(function(){finish(false);},8000);
+    img.onload=function(){finish(img.naturalWidth>1 && img.naturalHeight>1);};
+    img.onerror=function(){finish(false);};img.referrerPolicy='no-referrer';img.src=url;
+  });
+}
+async function firstUsablePhoto(identity,code,p){
+  var urls=photoCandidateURLs(identity,code,p);
+  for(var i=0;i<urls.length;i++)if(await loadPhotoURL(urls[i]))return {url:urls[i],barcode:code,source:identity.source || 'Barcode database'};
+  return null;
+}
+async function findExactPhoto(p,code){
+  var cache=NETCACHE[code] || NETCACHE[p.upc],identity=cache && cache.identity;
+  var cached=cache && Date.now()-(cache.at || 0)<Math.max(1,S.netCacheHours)*3600000;
+  if(cached){var hit=await firstUsablePhoto(identity,code,p);if(hit)return hit;}
+  if(!automaticPhotosAllowed())return null;
+  if(!(cached && identity && identity.source==='UPCitemdb' && sameRetailBarcode(identity.barcode,code))){
+    var upc=await provUPCitemdb(code);
+    if(upc.ok){var fromUPC=await firstUsablePhoto(upc.identity,code,p);if(fromUPC)return fromUPC;}
+  }
+  if(!automaticPhotosAllowed())return null;
+  // Food database is a fallback for images, even when the price provider found no photo.
+  var off=await provOFF(code);
+  return off.ok ? await firstUsablePhoto(off.identity,code,p) : null;
+}
+function updateAutoPhotoUI(upc){
+  if(!sheetOpen || String(currentUpc)!==String(upc) || !$('productPhotoSlot'))return;
+  var p=getProduct(upc);if(!p)return;
+  var slot=$('productPhotoSlot'),status=$('autoPhotoStatus');
+  var message=autoPhotoMessages[upc] || '';
+  if(p.imageVerifiedAt)message='Picture confirmed by you.';
+  else if(p.image && p.imageBarcode)message='Photo matched by barcode · '+(p.imageSource || 'Product database')+'. Packaging may vary.';
+  else if(!photoBarcode(p))message='No retail barcode available for an automatic photo. Use Update picture to add one.';
+  else if(p.needsReview)message='Check the product details first; then its photo can be matched safely.';
+  else if(p.imageAutoBlocked)message='Automatic replacement is paused for this picture. Use Update picture to choose another.';
+  if(status)status.textContent=message;
+  if(p.image && (S.netImages || /^data:image\//.test(p.image)) && slot.dataset.photo!==p.image){
+    var img=document.createElement('img');img.className='pimg';img.alt=p.name;img.referrerPolicy='no-referrer';
+    img.onerror=function(){if(!slot.isConnected)return;slot.textContent=p.icon || '📦';if(status)status.textContent='Photo unavailable. Use Update picture to replace it.';};
+    img.src=p.image;slot.replaceChildren(img);slot.dataset.photo=p.image;
+  }
+}
+function queueAutoPhoto(upc){
+  upc=String(upc);var p=getProduct(upc);
+  if(!automaticPhotosAllowed() || !eligibleAutoPhoto(p) || !photoBarcode(p))return Promise.resolve(false);
+  if(autoPhotoJobs[upc])return autoPhotoJobs[upc].promise;
+  if(photoAttempts[upc] && Date.now()-photoAttempts[upc].at<photoAttempts[upc].delay)return Promise.resolve(false);
+  var job={upc:upc};job.promise=new Promise(function(resolve){job.resolve=resolve;});autoPhotoJobs[upc]=job;autoPhotoQueue.push(job);
+  autoPhotoMessages[upc]='Looking for a photo with this barcode…';updateAutoPhotoUI(upc);pumpAutoPhotos();return job.promise;
+}
+async function pumpAutoPhotos(){
+  if(autoPhotoBusy)return;autoPhotoBusy=true;
+  while(autoPhotoQueue.length){
+    var job=autoPhotoQueue.shift(),p=getProduct(job.upc),success=false;
+    try{
+      if(automaticPhotosAllowed() && eligibleAutoPhoto(p) && photoBarcode(p)){
+        var fingerprint=photoFingerprint(p),match=await findExactPhoto(p,photoBarcode(p)),latest=getProduct(job.upc);
+        if(latest && photoFingerprint(latest)===fingerprint && automaticPhotosAllowed() && eligibleAutoPhoto(latest)){
+          if(match){
+            var next=EXTRA.map(function(x){return Object.assign({},x);}),entry=next.find(function(x){return String(x.upc)===job.upc;});
+            if(!entry){entry=Object.assign({},latest);next.push(entry);}
+            entry.image=match.url;entry.imageBarcode=match.barcode;entry.imageSource=match.source;entry.imageMatchedAt=Date.now();entry.imageVerifiedAt=0;
+            if(!storageOK)throw new Error('storage unavailable');
+            localStorage.setItem('hs.catalog',JSON.stringify(next));EXTRA=next;rebuildIndex();success=true;
+            autoPhotoMessages[job.upc]='Barcode-matched photo added.';
+          }else autoPhotoMessages[job.upc]='No usable barcode-matched photo found. Use Update picture for a package photo; provider coverage and limits vary.';
+          photoAttempts[job.upc]={at:Date.now(),delay:success?86400000:300000};
+          Object.keys(photoAttempts).sort(function(a,b){return photoAttempts[b].at-photoAttempts[a].at;}).slice(400).forEach(function(k){delete photoAttempts[k];});
+          lsSet('trill.photoAttempts',photoAttempts);
+        }
+      }
+    }catch(e){autoPhotoMessages[job.upc]='Automatic photo could not be saved or loaded. Your existing details are unchanged.';photoAttempts[job.upc]={at:Date.now(),delay:300000};}
+    delete autoPhotoJobs[job.upc];updateAutoPhotoUI(job.upc);job.resolve(success);
+  }
+  autoPhotoBusy=false;
+}
+function scheduleMissingPhotos(){
+  if(!automaticPhotosAllowed())return;
+  allCatalog().forEach(function(p){queueAutoPhoto(p.upc);});
+}
+window.addEventListener('online',scheduleMissingPhotos);
+

@@ -1,0 +1,25 @@
+==> cleaning
+==> staging web assets
+   injected ZXing decoder tag at offset 500818
+==> aapt2 compile (resources)
+==> aapt2 link (manifest + assets)
+==> javac
+Note: /home/user/trill-inventory/android/src/com/harrys/scan/MainActivity.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+==> d8 (dex)
+==> packaging classes.dex
+==> zipalign
+==> signing
+==> verifying
+Signer #1 certificate DN: CN=Harry's Scan, OU=Store Ops, O=Harry's Gas Stations, L=Cleveland, ST=TN, C=US
+Signer #1 certificate SHA-256 digest: cd551f02e0139ca7ed340aa3c3b35ffbf9b277138ad76c525bd0ff66a9effffb
+Signer #1 certificate SHA-1 digest: 487bb664c2e85d16484e75b1c1c8405a428e66b2
+Signer #1 certificate MD5 digest: 41b22a793b05efb5273fa96b4f2cc19b
+package: name='com.harrys.scan' versionCode='19' versionName='1.16.0' platformBuildVersionName='14' platformBuildVersionCode='34' compileSdkVersion='34' compileSdkVersionCodename='14'
+sdkVersion:'23'
+targetSdkVersion:'34'
+uses-permission: name='android.permission.CAMERA'
+uses-permission: name='android.permission.VIBRATE'
+uses-permission: name='android.permission.INTERNET'
+
+APK: /home/user/trill-inventory/android/../TrillInventory-1.16.0.apk  (508K)

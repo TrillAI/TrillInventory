@@ -1,0 +1,1210 @@
+[
+  {
+    "upc": "049000042566",
+    "sku": "HAR-1001",
+    "name": "Coca-Cola Classic",
+    "brand": "Coca-Cola",
+    "cat": "Cold Beverages",
+    "size": "20 fl oz bottle",
+    "price": 2.49,
+    "cost": 1.38,
+    "pack": 24,
+    "supplier": "Coca-Cola Consolidated",
+    "shelf": "Cooler 1 · Row A",
+    "tax": "food",
+    "age": 0,
+    "par": 48,
+    "rp": 12,
+    "icon": "🥤",
+    "desc": "The flagship 20 oz PET bottle. Highest single-unit mover in the cold vault on weekday afternoons.",
+    "specs": [
+      [
+        "Package",
+        "PET bottle, resealable"
+      ],
+      [
+        "Servings",
+        "1"
+      ],
+      [
+        "Calories",
+        "240"
+      ],
+      [
+        "Caffeine",
+        "63 mg"
+      ],
+      [
+        "Storage",
+        "Chilled 34–38°F"
+      ]
+    ]
+  },
+  {
+    "upc": "049000000443",
+    "sku": "HAR-1002",
+    "name": "Diet Coke",
+    "brand": "Coca-Cola",
+    "cat": "Cold Beverages",
+    "size": "20 fl oz bottle",
+    "price": 2.49,
+    "cost": 1.38,
+    "pack": 24,
+    "supplier": "Coca-Cola Consolidated",
+    "shelf": "Cooler 1 · Row A",
+    "tax": "food",
+    "age": 0,
+    "par": 36,
+    "rp": 10,
+    "icon": "🥤",
+    "desc": "Zero-calorie cola. Skews to the morning commuter crowd; keep it beside regular Coke.",
+    "specs": [
+      [
+        "Package",
+        "PET bottle"
+      ],
+      [
+        "Calories",
+        "0"
+      ],
+      [
+        "Caffeine",
+        "46 mg"
+      ],
+      [
+        "Storage",
+        "Chilled 34–38°F"
+      ]
+    ]
+  },
+  {
+    "upc": "012000001505",
+    "sku": "HAR-1003",
+    "name": "Pepsi",
+    "brand": "PepsiCo",
+    "cat": "Cold Beverages",
+    "size": "20 fl oz bottle",
+    "price": 2.49,
+    "cost": 1.31,
+    "pack": 24,
+    "supplier": "Pepsi Beverages Co.",
+    "shelf": "Cooler 1 · Row B",
+    "tax": "food",
+    "age": 0,
+    "par": 36,
+    "rp": 10,
+    "icon": "🥤",
+    "desc": "Primary cola competitor slot. Slightly higher margin than Coke at the same shelf price.",
+    "specs": [
+      [
+        "Package",
+        "PET bottle"
+      ],
+      [
+        "Calories",
+        "250"
+      ],
+      [
+        "Caffeine",
+        "38 mg"
+      ],
+      [
+        "Storage",
+        "Chilled 34–38°F"
+      ]
+    ]
+  },
+  {
+    "upc": "012000809682",
+    "sku": "HAR-1004",
+    "name": "Mountain Dew",
+    "brand": "PepsiCo",
+    "cat": "Cold Beverages",
+    "size": "20 fl oz bottle",
+    "price": 2.49,
+    "cost": 1.34,
+    "pack": 24,
+    "supplier": "Pepsi Beverages Co.",
+    "shelf": "Cooler 1 · Row B",
+    "tax": "food",
+    "age": 0,
+    "par": 36,
+    "rp": 10,
+    "icon": "🥤",
+    "desc": "Citrus soda, strong evening and overnight shift seller.",
+    "specs": [
+      [
+        "Package",
+        "PET bottle"
+      ],
+      [
+        "Calories",
+        "290"
+      ],
+      [
+        "Caffeine",
+        "91 mg"
+      ],
+      [
+        "Storage",
+        "Chilled 34–38°F"
+      ]
+    ]
+  },
+  {
+    "upc": "049000058765",
+    "sku": "HAR-1005",
+    "name": "Sprite",
+    "brand": "Coca-Cola",
+    "cat": "Cold Beverages",
+    "size": "20 fl oz bottle",
+    "price": 2.49,
+    "cost": 1.36,
+    "pack": 24,
+    "supplier": "Coca-Cola Consolidated",
+    "shelf": "Cooler 1 · Row C",
+    "tax": "food",
+    "age": 0,
+    "par": 24,
+    "rp": 8,
+    "icon": "🥤",
+    "desc": "Lemon-lime, caffeine free. Steady but slower turn than the colas.",
+    "specs": [
+      [
+        "Package",
+        "PET bottle"
+      ],
+      [
+        "Calories",
+        "200"
+      ],
+      [
+        "Caffeine",
+        "0"
+      ],
+      [
+        "Storage",
+        "Chilled 34–38°F"
+      ]
+    ]
+  },
+  {
+    "upc": "070847811169",
+    "sku": "HAR-1010",
+    "name": "Monster Energy Original",
+    "brand": "Monster Beverage",
+    "cat": "Energy Drinks",
+    "size": "16 fl oz can",
+    "price": 3.79,
+    "cost": 2.28,
+    "pack": 24,
+    "supplier": "Monster Energy Distribution",
+    "shelf": "Cooler 2 · Energy door",
+    "tax": "food",
+    "age": 0,
+    "par": 36,
+    "rp": 12,
+    "icon": "⚡",
+    "desc": "Top energy SKU. Anchor the energy door with it and keep the facings full through third shift.",
+    "specs": [
+      [
+        "Package",
+        "Aluminum can"
+      ],
+      [
+        "Calories",
+        "210"
+      ],
+      [
+        "Caffeine",
+        "160 mg"
+      ],
+      [
+        "Sugar",
+        "54 g"
+      ],
+      [
+        "Storage",
+        "Chilled 34–38°F"
+      ]
+    ]
+  },
+  {
+    "upc": "0611269991000",
+    "sku": "HAR-1011",
+    "name": "Red Bull Energy Drink",
+    "brand": "Red Bull",
+    "cat": "Energy Drinks",
+    "size": "8.4 fl oz can",
+    "price": 3.29,
+    "cost": 1.96,
+    "pack": 24,
+    "supplier": "Red Bull North America",
+    "shelf": "Cooler 2 · Energy door",
+    "tax": "food",
+    "age": 0,
+    "par": 48,
+    "rp": 16,
+    "icon": "⚡",
+    "desc": "Highest-velocity small can. Sell it as a single and a 2-for; it drives basket size with snacks.",
+    "specs": [
+      [
+        "Package",
+        "Aluminum can"
+      ],
+      [
+        "Calories",
+        "110"
+      ],
+      [
+        "Caffeine",
+        "80 mg"
+      ],
+      [
+        "Sugar",
+        "27 g"
+      ],
+      [
+        "Storage",
+        "Chilled 34–38°F"
+      ]
+    ]
+  },
+  {
+    "upc": "0889842014006",
+    "sku": "HAR-1012",
+    "name": "Celsius Sparkling Orange",
+    "brand": "Celsius",
+    "cat": "Energy Drinks",
+    "size": "12 fl oz can",
+    "price": 3.49,
+    "cost": 2.05,
+    "pack": 12,
+    "supplier": "Celsius Holdings",
+    "shelf": "Cooler 2 · Energy door",
+    "tax": "food",
+    "age": 0,
+    "par": 24,
+    "rp": 8,
+    "icon": "⚡",
+    "desc": "Fitness-positioned energy. Growing fast with the gym crowd; test a second facing before expanding.",
+    "specs": [
+      [
+        "Package",
+        "Aluminum can"
+      ],
+      [
+        "Calories",
+        "10"
+      ],
+      [
+        "Caffeine",
+        "200 mg"
+      ],
+      [
+        "Sugar",
+        "0 g"
+      ],
+      [
+        "Storage",
+        "Chilled 34–38°F"
+      ]
+    ]
+  },
+  {
+    "upc": "012000161155",
+    "sku": "HAR-1020",
+    "name": "Pure Leaf Sweet Tea",
+    "brand": "PepsiCo",
+    "cat": "Coffee & Tea",
+    "size": "18.5 fl oz bottle",
+    "price": 2.99,
+    "cost": 1.61,
+    "pack": 12,
+    "supplier": "Pepsi Beverages Co.",
+    "shelf": "Cooler 3 · Tea row",
+    "tax": "food",
+    "age": 0,
+    "par": 24,
+    "rp": 8,
+    "icon": "🧋",
+    "desc": "Southern sweet tea; strong afternoon pull. Keep it off the bottom shelf for visibility.",
+    "specs": [
+      [
+        "Package",
+        "Glass bottle"
+      ],
+      [
+        "Calories",
+        "180"
+      ],
+      [
+        "Caffeine",
+        "42 mg"
+      ],
+      [
+        "Storage",
+        "Chilled 34–38°F"
+      ]
+    ]
+  },
+  {
+    "upc": "089253101047",
+    "sku": "HAR-1021",
+    "name": "Starbucks Doubleshot Espresso",
+    "brand": "Starbucks / PepsiCo",
+    "cat": "Coffee & Tea",
+    "size": "6.5 fl oz can",
+    "price": 3.49,
+    "cost": 2.02,
+    "pack": 12,
+    "supplier": "Pepsi Beverages Co.",
+    "shelf": "Cooler 3 · Coffee row",
+    "tax": "food",
+    "age": 0,
+    "par": 18,
+    "rp": 6,
+    "icon": "☕",
+    "desc": "Morning commuter coffee. Sell-through peaks 6–9 AM; order ahead of the weekend.",
+    "specs": [
+      [
+        "Package",
+        "Aluminum can"
+      ],
+      [
+        "Calories",
+        "130"
+      ],
+      [
+        "Caffeine",
+        "135 mg"
+      ],
+      [
+        "Storage",
+        "Chilled 34–38°F"
+      ]
+    ]
+  },
+  {
+    "upc": "041570054253",
+    "sku": "HAR-1030",
+    "name": "Dasani Purified Water",
+    "brand": "Coca-Cola",
+    "cat": "Cold Beverages",
+    "size": "20 fl oz bottle",
+    "price": 1.99,
+    "cost": 0.71,
+    "pack": 24,
+    "supplier": "Coca-Cola Consolidated",
+    "shelf": "Cooler 3 · Water door",
+    "tax": "food",
+    "age": 0,
+    "par": 72,
+    "rp": 24,
+    "icon": "💧",
+    "desc": "Best margin in the cooler at 64%. Water is the impulse add-on — never let the door go thin.",
+    "specs": [
+      [
+        "Package",
+        "PET bottle"
+      ],
+      [
+        "Calories",
+        "0"
+      ],
+      [
+        "Additives",
+        "Minerals for taste"
+      ],
+      [
+        "Storage",
+        "Chilled or ambient"
+      ]
+    ]
+  },
+  {
+    "upc": "028400090865",
+    "sku": "HAR-2001",
+    "name": "Lay's Classic Potato Chips",
+    "brand": "Frito-Lay",
+    "cat": "Snacks",
+    "size": "2.625 oz bag",
+    "price": 2.49,
+    "cost": 1.44,
+    "pack": 24,
+    "supplier": "Frito-Lay Inc.",
+    "shelf": "Aisle 1 · Clip strip 2",
+    "tax": "food",
+    "age": 0,
+    "par": 36,
+    "rp": 12,
+    "icon": "🥔",
+    "desc": "The anchor salty snack. Pair it with the sandwich case — the combo drives the highest attach rate.",
+    "specs": [
+      [
+        "Package",
+        "Foil bag"
+      ],
+      [
+        "Servings",
+        "1"
+      ],
+      [
+        "Calories",
+        "160"
+      ],
+      [
+        "Allergens",
+        "None declared"
+      ],
+      [
+        "Shelf life",
+        "~90 days"
+      ]
+    ]
+  },
+  {
+    "upc": "028400034937",
+    "sku": "HAR-2002",
+    "name": "Doritos Nacho Cheese",
+    "brand": "Frito-Lay",
+    "cat": "Snacks",
+    "size": "2.75 oz bag",
+    "price": 2.49,
+    "cost": 1.46,
+    "pack": 24,
+    "supplier": "Frito-Lay Inc.",
+    "shelf": "Aisle 1 · Clip strip 2",
+    "tax": "food",
+    "age": 0,
+    "par": 36,
+    "rp": 12,
+    "icon": "🌮",
+    "desc": "Strongest night-shift snack. Crush risk is high in the clip strip — rotate stock oldest first.",
+    "specs": [
+      [
+        "Package",
+        "Foil bag"
+      ],
+      [
+        "Calories",
+        "150"
+      ],
+      [
+        "Allergens",
+        "Milk"
+      ],
+      [
+        "Shelf life",
+        "~90 days"
+      ]
+    ]
+  },
+  {
+    "upc": "028400043601",
+    "sku": "HAR-2003",
+    "name": "Cheetos Crunchy",
+    "brand": "Frito-Lay",
+    "cat": "Snacks",
+    "size": "2.125 oz bag",
+    "price": 2.49,
+    "cost": 1.45,
+    "pack": 24,
+    "supplier": "Frito-Lay Inc.",
+    "shelf": "Aisle 1 · Clip strip 3",
+    "tax": "food",
+    "age": 0,
+    "par": 24,
+    "rp": 8,
+    "icon": "🧀",
+    "desc": "Steady mid-tier mover. Keep adjacent to Doritos for a full salty set.",
+    "specs": [
+      [
+        "Package",
+        "Foil bag"
+      ],
+      [
+        "Calories",
+        "160"
+      ],
+      [
+        "Allergens",
+        "Milk"
+      ],
+      [
+        "Shelf life",
+        "~90 days"
+      ]
+    ]
+  },
+  {
+    "upc": "026200142647",
+    "sku": "HAR-2010",
+    "name": "Jack Link's Original Beef Jerky",
+    "brand": "Jack Link's",
+    "cat": "Snacks",
+    "size": "1.25 oz pouch",
+    "price": 3.49,
+    "cost": 2.11,
+    "pack": 12,
+    "supplier": "Link Snacks Inc.",
+    "shelf": "Aisle 1 · Jerky rack",
+    "tax": "food",
+    "age": 0,
+    "par": 18,
+    "rp": 6,
+    "icon": "🥩",
+    "desc": "High ring, low unit velocity. Good road-trip item — stock up before holiday weekends.",
+    "specs": [
+      [
+        "Package",
+        "Resealable pouch"
+      ],
+      [
+        "Protein",
+        "9 g"
+      ],
+      [
+        "Allergens",
+        "Soy, wheat"
+      ],
+      [
+        "Storage",
+        "Ambient, dry"
+      ]
+    ]
+  },
+  {
+    "upc": "026200494685",
+    "sku": "HAR-2011",
+    "name": "Slim Jim Giant",
+    "brand": "Conagra",
+    "cat": "Snacks",
+    "size": "0.97 oz stick",
+    "price": 1.99,
+    "cost": 1.02,
+    "pack": 24,
+    "supplier": "Conagra Brands",
+    "shelf": "Aisle 1 · Counter jar",
+    "tax": "food",
+    "age": 0,
+    "par": 36,
+    "rp": 12,
+    "icon": "🌭",
+    "desc": "Register-adjacent impulse. Keep the jar on the counter within arm's reach of the clerk.",
+    "specs": [
+      [
+        "Package",
+        "Single stick"
+      ],
+      [
+        "Protein",
+        "6 g"
+      ],
+      [
+        "Allergens",
+        "None declared"
+      ],
+      [
+        "Storage",
+        "Ambient"
+      ]
+    ]
+  },
+  {
+    "upc": "040000004349",
+    "sku": "HAR-3001",
+    "name": "M&M's Milk Chocolate",
+    "brand": "Mars Wrigley",
+    "cat": "Candy",
+    "size": "1.69 oz share size",
+    "price": 2.19,
+    "cost": 1.19,
+    "pack": 24,
+    "supplier": "Mars Wrigley Confectionery",
+    "shelf": "Aisle 2 · Candy set",
+    "tax": "food",
+    "age": 0,
+    "par": 24,
+    "rp": 8,
+    "icon": "🍫",
+    "desc": "Best-selling candy single. Chocolate melts above 85°F — keep it off the sun-facing shelf.",
+    "specs": [
+      [
+        "Package",
+        "Film bag"
+      ],
+      [
+        "Calories",
+        "240"
+      ],
+      [
+        "Allergens",
+        "Milk, soy"
+      ],
+      [
+        "Heat",
+        "Sensitive above 85°F"
+      ]
+    ]
+  },
+  {
+    "upc": "040000004417",
+    "sku": "HAR-3002",
+    "name": "Snickers Bar",
+    "brand": "Mars Wrigley",
+    "cat": "Candy",
+    "size": "1.86 oz bar",
+    "price": 2.19,
+    "cost": 1.21,
+    "pack": 24,
+    "supplier": "Mars Wrigley Confectionery",
+    "shelf": "Aisle 2 · Candy set",
+    "tax": "food",
+    "age": 0,
+    "par": 24,
+    "rp": 8,
+    "icon": "🍫",
+    "desc": "Top three candy bar. Strong with the coffee crowd in the early morning.",
+    "specs": [
+      [
+        "Package",
+        "Single bar"
+      ],
+      [
+        "Calories",
+        "250"
+      ],
+      [
+        "Allergens",
+        "Milk, peanuts, soy, egg"
+      ],
+      [
+        "Heat",
+        "Sensitive above 85°F"
+      ]
+    ]
+  },
+  {
+    "upc": "034000009183",
+    "sku": "HAR-3003",
+    "name": "Reese's Peanut Butter Cups",
+    "brand": "The Hershey Company",
+    "cat": "Candy",
+    "size": "1.5 oz pack",
+    "price": 2.19,
+    "cost": 1.23,
+    "pack": 24,
+    "supplier": "Hershey Co.",
+    "shelf": "Aisle 2 · Candy set",
+    "tax": "food",
+    "age": 0,
+    "par": 24,
+    "rp": 8,
+    "icon": "🍬",
+    "desc": "Highest repeat-purchase candy in the set. Never out of stock on a Friday.",
+    "specs": [
+      [
+        "Package",
+        "2-cup pack"
+      ],
+      [
+        "Calories",
+        "220"
+      ],
+      [
+        "Allergens",
+        "Milk, peanuts, soy"
+      ],
+      [
+        "Heat",
+        "Sensitive above 85°F"
+      ]
+    ]
+  },
+  {
+    "upc": "028000134020",
+    "sku": "HAR-4001",
+    "name": "Harry's Roller Grill Hot Dog",
+    "brand": "Harry's Kitchen",
+    "cat": "Store Made",
+    "size": "1 dog + bun",
+    "price": 1.99,
+    "cost": 0.62,
+    "pack": 1,
+    "supplier": "In-store prep",
+    "shelf": "Front counter · Roller grill",
+    "tax": "food",
+    "age": 0,
+    "par": 20,
+    "rp": 6,
+    "icon": "🌭",
+    "desc": "Highest-margin item in the store at 69%. Pull one off the grill after 4 hours per hold-time policy and log the waste.",
+    "specs": [
+      [
+        "Hold time",
+        "4 hours max"
+      ],
+      [
+        "Prep",
+        "Roller grill"
+      ],
+      [
+        "Allergens",
+        "Wheat, soy"
+      ],
+      [
+        "Temp",
+        "≥140°F holding"
+      ]
+    ]
+  },
+  {
+    "upc": "028000134037",
+    "sku": "HAR-4002",
+    "name": "Harry's House Blend Coffee",
+    "brand": "Harry's Kitchen",
+    "cat": "Store Made",
+    "size": "16 fl oz cup",
+    "price": 1.89,
+    "cost": 0.34,
+    "pack": 1,
+    "supplier": "In-store prep",
+    "shelf": "Front counter · Coffee bar",
+    "tax": "food",
+    "age": 0,
+    "par": 40,
+    "rp": 15,
+    "icon": "☕",
+    "desc": "82% margin. Brew fresh every 2 hours; the morning rush clears a full urn by 9 AM.",
+    "specs": [
+      [
+        "Hold time",
+        "2 hours max"
+      ],
+      [
+        "Sizes",
+        "12 / 16 / 20 oz"
+      ],
+      [
+        "Allergens",
+        "None"
+      ],
+      [
+        "Temp",
+        "≥155°F"
+      ]
+    ]
+  },
+  {
+    "upc": "018200053023",
+    "sku": "HAR-4010",
+    "name": "Bud Light",
+    "brand": "Anheuser-Busch",
+    "cat": "Beer & Wine",
+    "size": "25 fl oz can",
+    "price": 2.79,
+    "cost": 1.94,
+    "pack": 24,
+    "supplier": "AB Distribution",
+    "shelf": "Cooler 4 · Beer door",
+    "tax": "taxable",
+    "age": 21,
+    "par": 48,
+    "rp": 16,
+    "icon": "🍺",
+    "desc": "Highest-volume beer single. ID every purchase, no exceptions — card everyone who looks under 40.",
+    "specs": [
+      [
+        "ABV",
+        "4.2%"
+      ],
+      [
+        "Package",
+        "Aluminum can"
+      ],
+      [
+        "Sold as",
+        "Single 25 oz"
+      ],
+      [
+        "Compliance",
+        "21+ ID required"
+      ]
+    ]
+  },
+  {
+    "upc": "0835767004097",
+    "sku": "HAR-4011",
+    "name": "White Claw Hard Seltzer Black Cherry",
+    "brand": "Mark Anthony",
+    "cat": "Beer & Wine",
+    "size": "24 fl oz can",
+    "price": 3.49,
+    "cost": 2.32,
+    "pack": 12,
+    "supplier": "Mark Anthony Brands",
+    "shelf": "Cooler 4 · Seltzer door",
+    "tax": "taxable",
+    "age": 21,
+    "par": 24,
+    "rp": 8,
+    "icon": "🍒",
+    "desc": "Fast-growing seltzer single, skews younger. Strong Friday–Saturday evening sell-through.",
+    "specs": [
+      [
+        "ABV",
+        "5.0%"
+      ],
+      [
+        "Package",
+        "Aluminum can"
+      ],
+      [
+        "Calories",
+        "100"
+      ],
+      [
+        "Compliance",
+        "21+ ID required"
+      ]
+    ]
+  },
+  {
+    "upc": "028200005052",
+    "sku": "HAR-5001",
+    "name": "Marlboro Red King Box",
+    "brand": "Altria",
+    "cat": "Tobacco",
+    "size": "20-pack box",
+    "price": 9.87,
+    "cost": 7.94,
+    "pack": 10,
+    "supplier": "Altria Group Distribution",
+    "shelf": "Behind counter · Rack B",
+    "tax": "taxable",
+    "age": 21,
+    "par": 30,
+    "rp": 10,
+    "icon": "🚬",
+    "desc": "Highest ring in the store at 19.6% margin. Behind-counter only — never on an open shelf. Federal minimum age is 21.",
+    "specs": [
+      [
+        "Pack",
+        "20 cigarettes"
+      ],
+      [
+        "Carton",
+        "10 packs"
+      ],
+      [
+        "Compliance",
+        "21+ ID required"
+      ],
+      [
+        "Placement",
+        "Behind counter only"
+      ],
+      [
+        "Tax",
+        "Excise applies"
+      ]
+    ]
+  },
+  {
+    "upc": "028200005670",
+    "sku": "HAR-5002",
+    "name": "Copenhagen Long Cut Wintergreen",
+    "brand": "Altria",
+    "cat": "Tobacco",
+    "size": "1.2 oz can",
+    "price": 8.49,
+    "cost": 6.61,
+    "pack": 5,
+    "supplier": "Altria Group Distribution",
+    "shelf": "Behind counter · Rack C",
+    "tax": "taxable",
+    "age": 21,
+    "par": 15,
+    "rp": 5,
+    "icon": "🚬",
+    "desc": "Steady moist-snuff seller. Check state excise stamp before receiving a shipment.",
+    "specs": [
+      [
+        "Pack",
+        "1.2 oz can"
+      ],
+      [
+        "Roll",
+        "5 cans"
+      ],
+      [
+        "Compliance",
+        "21+ ID required"
+      ],
+      [
+        "Placement",
+        "Behind counter only"
+      ]
+    ]
+  },
+  {
+    "upc": "0071216990034",
+    "sku": "HAR-5010",
+    "name": "BIC Classic Lighter",
+    "brand": "BIC",
+    "cat": "Household",
+    "size": "Single lighter",
+    "price": 2.99,
+    "cost": 1.42,
+    "pack": 50,
+    "supplier": "BIC USA",
+    "shelf": "Front counter · Lighter jar",
+    "tax": "taxable",
+    "age": 18,
+    "par": 40,
+    "rp": 12,
+    "icon": "🔥",
+    "desc": "Attaches to tobacco sales at ~40%. Keep the jar full or you lose the add-on.",
+    "specs": [
+      [
+        "Type",
+        "Disposable"
+      ],
+      [
+        "Child resistant",
+        "Yes"
+      ],
+      [
+        "Compliance",
+        "18+ recommended"
+      ],
+      [
+        "Storage",
+        "Ambient, away from heat"
+      ]
+    ]
+  },
+  {
+    "upc": "0071216990041",
+    "sku": "HAR-5011",
+    "name": "Duracell AA Batteries (2-pack)",
+    "brand": "Duracell",
+    "cat": "Household",
+    "size": "2 batteries",
+    "price": 6.99,
+    "cost": 4.35,
+    "pack": 12,
+    "supplier": "Duracell Distribution",
+    "shelf": "Aisle 3 · Pegboard",
+    "tax": "taxable",
+    "age": 0,
+    "par": 12,
+    "rp": 4,
+    "icon": "🔋",
+    "desc": "Emergency purchase item — low velocity, high margin. Two facings is plenty.",
+    "specs": [
+      [
+        "Chemistry",
+        "Alkaline"
+      ],
+      [
+        "Voltage",
+        "1.5 V"
+      ],
+      [
+        "Shelf life",
+        "10 years"
+      ],
+      [
+        "Storage",
+        "Ambient, dry"
+      ]
+    ]
+  },
+  {
+    "upc": "003700009946",
+    "sku": "HAR-5020",
+    "name": "Advil Ibuprofen 2ct Packet",
+    "brand": "Haleon",
+    "cat": "Health & Beauty",
+    "size": "2 tablets",
+    "price": 2.49,
+    "cost": 1.11,
+    "pack": 24,
+    "supplier": "Haleon",
+    "shelf": "Aisle 3 · Register peg",
+    "tax": "taxable",
+    "age": 0,
+    "par": 18,
+    "rp": 6,
+    "icon": "💊",
+    "desc": "Cheap margin rescue item; pairs with hangover and travel purchases. Check expiration quarterly.",
+    "specs": [
+      [
+        "Dose",
+        "200 mg"
+      ],
+      [
+        "Count",
+        "2 tablets"
+      ],
+      [
+        "Directions",
+        "Per package label"
+      ],
+      [
+        "Expiry",
+        "Rotate quarterly"
+      ]
+    ]
+  },
+  {
+    "upc": "0030520003304",
+    "sku": "HAR-5021",
+    "name": "ChapStick Original",
+    "brand": "Haleon",
+    "cat": "Health & Beauty",
+    "size": "0.15 oz tube",
+    "price": 2.29,
+    "cost": 1.08,
+    "pack": 12,
+    "supplier": "Haleon",
+    "shelf": "Aisle 3 · Register peg",
+    "tax": "taxable",
+    "age": 0,
+    "par": 12,
+    "rp": 4,
+    "icon": "💄",
+    "desc": "Winter spike item. Double the order October through February.",
+    "specs": [
+      [
+        "Size",
+        "0.15 oz"
+      ],
+      [
+        "SPF",
+        "15"
+      ],
+      [
+        "Allergens",
+        "None declared"
+      ],
+      [
+        "Seasonality",
+        "High Oct–Feb"
+      ]
+    ]
+  },
+  {
+    "upc": "0001544176008",
+    "sku": "HAR-6001",
+    "name": "Ice Bag 7 lb",
+    "brand": "Harry's",
+    "cat": "Ice & Frozen",
+    "size": "7 lb bag",
+    "price": 2.99,
+    "cost": 1.05,
+    "pack": 6,
+    "supplier": "Arctic Glacier",
+    "shelf": "Outside ice chest",
+    "tax": "taxable",
+    "age": 0,
+    "par": 24,
+    "rp": 8,
+    "icon": "🧊",
+    "desc": "64% margin and the single biggest summer weekend mover. Refill the chest every shift change.",
+    "specs": [
+      [
+        "Weight",
+        "7 lb"
+      ],
+      [
+        "Storage",
+        "Freezer chest"
+      ],
+      [
+        "Seasonality",
+        "Peak May–Sep"
+      ],
+      [
+        "Shelf life",
+        "Best before 30 days"
+      ]
+    ]
+  },
+  {
+    "upc": "0081694012340",
+    "sku": "HAR-6010",
+    "name": "Valvoline 5W-30 Motor Oil",
+    "brand": "Valvoline",
+    "cat": "Automotive",
+    "size": "1 qt bottle",
+    "price": 9.99,
+    "cost": 6.12,
+    "pack": 6,
+    "supplier": "Valvoline Distribution",
+    "shelf": "Aisle 4 · Auto endcap",
+    "tax": "taxable",
+    "age": 0,
+    "par": 12,
+    "rp": 4,
+    "icon": "🛢️",
+    "desc": "Classic gas-station emergency buy. Sells hardest on holiday travel weekends — keep two cases.",
+    "specs": [
+      [
+        "Viscosity",
+        "5W-30"
+      ],
+      [
+        "Type",
+        "Conventional"
+      ],
+      [
+        "Volume",
+        "1 US quart"
+      ],
+      [
+        "Storage",
+        "Indoor, upright"
+      ]
+    ]
+  },
+  {
+    "upc": "0081694012357",
+    "sku": "HAR-6011",
+    "name": "Fix-A-Flat Tire Sealant",
+    "brand": "ITW Global Tire Repair",
+    "cat": "Automotive",
+    "size": "16 oz aerosol",
+    "price": 12.99,
+    "cost": 8.44,
+    "pack": 6,
+    "supplier": "ITW",
+    "shelf": "Aisle 4 · Auto endcap",
+    "tax": "taxable",
+    "age": 0,
+    "par": 6,
+    "rp": 2,
+    "icon": "🛞",
+    "desc": "Low velocity, but rescues a stranded customer. Small par counts are enough.",
+    "specs": [
+      [
+        "Volume",
+        "16 oz"
+      ],
+      [
+        "Rated tire",
+        "Up to 20 in"
+      ],
+      [
+        "Instruction",
+        "Per can label"
+      ],
+      [
+        "Storage",
+        "Ambient, out of sun"
+      ]
+    ]
+  }
+]

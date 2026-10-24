@@ -1,0 +1,93 @@
+/* Fast scan: immediate durable +1, independent of product detail sheets/network. */
+var fastLatch='',fastLastSeen=0,fastBlankFrames=0,fastLastAcceptedAt=0,fastSessionCount=0;
+var fastLastEvent=null,fastMessage='',fastError=false,fastLookupJobs={},fastLookupAttempt={},fastLookupChain=Promise.resolve();
+function fastCaptureReady(){
+  return !sheetOpen && !scanPaused && !document.hidden && $('app').getAttribute('data-drawer')==='none' && $('onboard').classList.contains('off') && (splashDone || !$('splash'));
+}
+function fastNoCode(){
+  if(!S.fastScan || !fastCaptureReady() || !fastLatch)return;
+  fastBlankFrames++;
+  if(fastBlankFrames>=2 && Date.now()-fastLastSeen>=650){fastLatch='';fastBlankFrames=0;}
+}
+function fastScanAccepted(code,source){
+  var now=Date.now();
+  if(!code || code.length>256 || /[\x00-\x1f]/.test(code))return false;
+  if(source==='camera'){
+    fastBlankFrames=0;fastLastSeen=now;
+    if(code===fastLatch)return false;
+    if(now-fastLastAcceptedAt<120)return false;
+  }else if(code===fastLatch && now-fastLastAcceptedAt<250)return false;
+  fastLatch=code;fastLastAcceptedAt=now;return true;
+}
+function fastWrite(catalog,inventory,history){
+  if(!storageOK)throw new Error('Storage unavailable');
+  var keys=['hs.catalog','hs.inventory','hs.history'],values=[catalog,inventory,history.slice(0,600)],previous=keys.map(function(k){return localStorage.getItem(k);});
+  try{keys.forEach(function(k,i){localStorage.setItem(k,JSON.stringify(values[i]));});}
+  catch(e){keys.forEach(function(k,i){try{if(previous[i]===null)localStorage.removeItem(k);else localStorage.setItem(k,previous[i]);}catch(ignore){}});throw e;}
+}
+function commitFastScan(upc){
+  var p=getProduct(upc),now=Date.now(),catalog=EXTRA.slice(),inventory=Object.assign({},INV);
+  if(!p){p={upc:upc,sku:'',name:'Unknown item · '+upc,brand:'',cat:'Other',size:'—',price:0,cost:0,priceSet:false,costSet:false,pack:1,par:12,rp:4,icon:'📦',supplier:'Unassigned',shelf:'Unassigned',tax:'taxable',age:0,specs:[],desc:'Added with Fast scan. Review product details against the package.',fastUnresolved:true,fastAddedAt:now};catalog.push(p);}
+  var old=INV[upc],qty=old ? Number(old.qty) : 0;
+  if(!Number.isInteger(qty) || qty<0 || qty>=1000000){fastMessage='Not counted: check the current stock amount in Inventory.';fastError=true;stopCamera();renderFastStatus();return false;}
+  inventory[upc]=Object.assign({},old || {first:now,scans:0},{qty:qty+1,last:now,scans:(old && old.scans || 0)+1});
+  var event={upc:upc,name:p.name,qty:1,at:now,kind:'fast',id:'fast-'+now+'-'+Math.random().toString(36).slice(2,8)};
+  var history=[event].concat(HIST).slice(0,600);
+  try{fastWrite(catalog,inventory,history);}catch(e){fastMessage='Not saved: phone storage is full or unavailable. Scanning stopped; stock was not changed.';fastError=true;stopCamera();renderFastStatus();return false;}
+  EXTRA=catalog;INV=inventory;HIST=history;rebuildIndex();
+  fastSessionCount++;fastLastEvent={id:event.id,upc:upc,qty:qty+1,scans:inventory[upc].scans};fastError=false;
+  fastMessage='+1 '+p.name+' · '+(qty+1)+' on hand';
+  beep();haptic(25);flashTorchOff();renderHud();
+  // No full-screen flash or sheet: leave the camera clear for the next barcode.
+  if(p.fastUnresolved)queueFastDetails(upc);else queueAutoPhoto(upc);
+  return true;
+}
+function undoFastScan(){
+  var last=fastLastEvent,old=last && INV[last.upc];
+  if(!last)return;
+  if(!old || old.qty!==last.qty || old.scans!==last.scans || !HIST.some(function(h){return h.id===last.id;})){
+    fastMessage='Cannot undo: that stock count changed. Review it in Inventory.';fastError=true;renderFastStatus();return;
+  }
+  var inventory=Object.assign({},INV);inventory[last.upc]=Object.assign({},old,{qty:old.qty-1,scans:Math.max(0,old.scans-1),last:Date.now()});
+  var history=HIST.filter(function(h){return h.id!==last.id;});
+  try{fastWrite(EXTRA,inventory,history);}catch(e){fastMessage='Undo could not save. Stock is unchanged.';fastError=true;renderFastStatus();return;}
+  INV=inventory;HIST=history;fastSessionCount=Math.max(0,fastSessionCount-1);fastLastEvent=null;fastError=false;
+  fastMessage='Last +1 undone. Move the barcode away before scanning it again.';renderHud();
+}
+function renderFastStatus(){
+  var button=$('btnFastScan'),status=$('fastScanStatus'),undo=$('btnFastUndo');if(!button)return;
+  button.textContent=S.fastScan?'⚡ Fast scan: ON':'⚡ Fast scan: off';button.setAttribute('aria-pressed',String(!!S.fastScan));
+  status.hidden=!S.fastScan;undo.hidden=!S.fastScan;undo.disabled=!fastLastEvent;
+  status.classList.toggle('error',fastError);
+  status.textContent=(fastMessage || 'Ready · +1 per scan, no product pop-ups.')+' · '+fastSessionCount+' this session. Clear the barcode from view briefly before scanning another identical item.';
+  if(S.fastScan && camOn)$('retHint').textContent='Fast scan · +1 per scan · move each barcode out of view';
+}
+function setFastScan(enabled,start){
+  var changed=S.fastScan!==!!enabled;S.fastScan=!!enabled;
+  if(changed){fastLatch='';fastBlankFrames=0;fastLastSeen=0;fastLastAcceptedAt=0;lastUpc=null;lastAt=0;fastMessage='';fastError=false;fastLastEvent=null;fastSessionCount=0;}
+  scanPaused=false;
+  if(zxReader){zxReader.timeBetweenScansMillis=S.fastScan?120:500;zxReader.timeBetweenDecodingAttempts=S.fastScan?100:(S.advScan?110:160);}
+  saveSettings();renderHud();syncTorch();
+  if(!S.fastScan && camOn)$('retHint').textContent='Point the camera at a barcode';
+  if(start && S.fastScan && !camOn)startCamera();
+}
+function queueFastDetails(upc){
+  var p=getProduct(upc);
+  if(!p || !p.fastUnresolved || !onlineReady() || !S.netIdentity || !photoBarcode(p))return;
+  if(fastLookupJobs[upc] || (fastLookupAttempt[upc] && Date.now()-fastLookupAttempt[upc]<300000))return;
+  var stamp=p.fastAddedAt;fastLookupJobs[upc]=true;fastLookupAttempt[upc]=Date.now();
+  fastLookupChain=fastLookupChain.then(async function(){
+    var initial=getProduct(upc);if(!initial || !initial.fastUnresolved || initial.fastAddedAt!==stamp)return;
+    var res=await lookupOnline(upc),id=res.identity,latest=getProduct(upc);
+    if(!id || !id.name || !sameRetailBarcode(upc,id.barcode) || !latest || !latest.fastUnresolved || latest.fastAddedAt!==stamp || latest.identityReviewedAt)return;
+    var next=EXTRA.map(function(x){return Object.assign({},x);}),entry=next.find(function(x){return String(x.upc)===String(upc);});if(!entry)return;
+    entry.name=String(id.name).slice(0,180);entry.brand=String(id.brand || '').slice(0,80);entry.size=String(id.size || '—').slice(0,100);entry.cat=guessCategory((id.category || '')+' '+id.name);entry.fastUnresolved=false;entry.fastNeedsReview=true;
+    entry.identitySource=id.source || 'Barcode database';
+    if(!storageOK)return;localStorage.setItem('hs.catalog',JSON.stringify(next));EXTRA=next;rebuildIndex();
+    if(fastLastEvent && fastLastEvent.upc===upc){fastMessage='+1 '+entry.name+' · '+INV[upc].qty+' on hand';renderFastStatus();}
+    queueAutoPhoto(upc);
+  }).catch(function(){}).then(function(){delete fastLookupJobs[upc];});
+}
+function scheduleFastDetails(){allCatalog().filter(function(p){return p.fastUnresolved;}).forEach(function(p){queueFastDetails(p.upc);});}
+window.addEventListener('online',function(){fastLookupAttempt={};scheduleFastDetails();});
+

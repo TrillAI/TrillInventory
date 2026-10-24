@@ -1,0 +1,309 @@
+=== tests/auto-photos.js
+AUTO PHOTOS + CONTEXT OK: conditional tobacco UI, save/import, exact barcode, size guard, alternate/fallback image, unchanged stock/qty/price, manual-photo race, removal, opt-out
+=== tests/bridge-errors.js
+BRIDGE + ERRORS OK: compiled annotated bridge, native callbacks, missing product vs endpoint failure
+=== tests/browser-dashboard.js
+BROWSER DASHBOARD OK: connect, list, edit, sync, filter, disconnect
+=== tests/browser-host.js
+BROWSER HOST OK: real data only, shared edits, persistence, conflict detection, phone stale edits, validation, rollback
+=== tests/cigarette-live.js
+CIGARETTE + LIVE STATE OK: explicit setup, validation, carton quantity, separate barcodes, fast +1, latest scan, variant mismatch, failed-save rollback
+=== tests/fast-real-zxing.js
+REAL BUNDLED ZXING LOOP OK: actual 0.21 API, continuous callbacks, numeric cadence, held suppression, rearm, next item, clean stop
+=== tests/fast-scan.js
+FAST SCAN OK: +1, no sheets, held-code guard, flicker guard, same-item rearm, aliases, unknown/offline counts, undo, pause, background identity, durable rollback, normal mode
+=== tests/lookup-retailers.js
+LOOKUP + RETAILERS OK: barcode conversions, fallback, cache expiry, force retry, errors, search links, observations
+=== tests/motion.js
+MOTION OK: sheet/stat/counter effects, exact values, setting off, live system reduced-motion, cancellation
+=== tests/native-path.js
+
+[1] boot with bundled decoder present
+  ok    no boot errors
+
+[2] onboarding -> first scan
+  ok    camera starts without error banner
+  ok    ZXing reader constructed
+  ok    scan throttle options passed
+  ok    decoding bound to the <video> element
+  ok    HUD reports camera live
+
+[3] a decoded barcode flows through the normal path
+  ok    sheet opens for decoded UPC
+  ok    stock + price rendered
+
+[4] scanning pauses while reviewing
+  ok    second decode ignored while sheet is open
+
+[5] stop camera tears the reader down
+  ok    zxing reader reset
+  ok    camera track stopped
+  ok    button back to Start camera
+
+NATIVE PATH OK
+=== tests/online.js
+
+[1] check digit validation
+  ok    invalid check digit flagged
+  ok    still allows manual save
+
+[2] unknown barcode -> online lookup -> prefilled form
+  ok    shows progress or resolves immediately
+  ok    network was actually hit
+  ok    identity prefilled into name field
+  ok    category guessed from "Soda"
+  ok    reference offers do not become a shelf price
+  ok    price of 0 rejected
+  ok    stale price excluded
+  ok    source transparency shown
+  ok    no Auto-add happened
+
+[3] saving the online-sourced product with a manual shelf price
+  ok    product written to catalog
+  ok    price stored as 8.29
+
+[4] caching prevents repeat spend
+  ok    online status view opens
+  ok    lookups-today counter visible
+  ok    served from cache (no new request)
+  ok    cache badge shown
+
+[5] adopting an online price onto a catalog product
+  ok    adopt button present
+  ok    catalog price updated
+  ok    provenance recorded
+
+[5b] pack-size guard on a seeded product
+  ok    seeded product opens
+  ok    check-online button offered
+  ok    pack mismatch warned on 20 oz vs 12 fl oz
+
+[5c] seed product survives a price override
+  ok    name still present after override
+  ok    category survived
+  ok    supplier survived
+  ok    case pack survived
+  ok    price was updated
+
+[6] HTTP 429 -> backoff, no crash
+  ok    429 handled without crashing
+  ok    still offers manual entry
+
+[7] active backoff -> honest incomplete-lookup path
+  ok    active backoff is not mislabeled a missing product
+  ok    form still usable
+
+ONLINE LOOKUP OK
+=== tests/photos.js
+PHOTOS OK: preview, confirmation, image error, metadata preservation, removal, stale lookup, storage failure
+=== tests/picker.js
+
+[1] unknown scan -> name it -> options appear automatically
+  ok    naming form shown
+  ok    picker present but empty
+  ok    search was triggered by typing
+  ok    candidate options rendered
+  ok    option shows brand + price
+  ok    multi-pack title cleaned
+
+[2] choosing an option fills the form
+  ok    name filled from match
+  ok    brand filled
+  ok    size derived from title
+  ok    category guessed
+  ok    unverified search price not copied
+  ok    unit cost is not fabricated
+  ok    selection marked in list
+
+[2b] multipack listing is converted to a per-unit price
+  ok    12-pack detected in title
+  ok    multipack reference not silently applied
+  ok    listing units do not overwrite case pack
+  ok    parenthetical pack stripped from name
+  ok    single-unit reference still needs manual price
+
+[2c] implausible multipack price is rejected
+  ok    nonsense unit price not written
+  ok    user is warned why
+  ok    identity still applied
+  ok    empty parens stripped from title
+
+[3] saving keeps the match metadata and manually entered price
+  ok    saved with chosen name
+  ok    unverified name-search thumbnail not stored
+  ok    matched barcode stored
+  ok    size stored on product
+  ok    price stored
+  ok    image is not guessed from name search
+
+[4] update info on an existing product
+  ok    update-info button offered
+  ok    update sheet opened
+  ok    options listed for existing product
+  ok    option can be selected
+  ok    apply buttons available
+  ok    override written with chosen title
+  ok    result sheet now titled with new name
+  ok    price NOT changed without opt-in
+  ok    rest of the product survived the override
+
+[5] search failure falls back to local catalog
+  ok    add-product sheet opens
+  ok    local matches offered when search fails
+  ok    local fallback explained
+
+[6] manual add without a barcode
+  ok    manual product saved
+  ok    manual product counted in inventory
+
+PICKER OK
+=== tests/price-edit.js
+PRICE EDIT OK: validation, save, cost optional, cancel, zero confirmation, stock/identity preserved, storage failure
+=== tests/product-integrity.js
+PRODUCT INTEGRITY OK: blank catalog, safe migration, exact returned barcodes, no guessed prices/cost/case packs, confirmed corrections retain stock
+=== tests/smoke.js
+
+[1] boot & onboarding
+  ok    no boot errors
+  ok    onboarding shown on first run
+  ok    onboarding dismissed
+  ok    starts with empty inventory
+  ok    camera fallback message shown (no camera here)
+
+[2] manual scan -> detail sheet
+  ok    manual entry sheet opens
+  ok    product resolved
+  ok    shows remaining stock
+  ok    shows shelf price
+  ok    shows order recommendation
+  ok    shows deep details
+
+[3] quantity controls & cataloging
+  ok    quick +6 sets pending qty
+  ok    stepper increments
+  ok    inventory persisted 8 units
+  ok    scan-next button appears after add
+
+[4] unknown barcode -> custom product
+  ok    unknown product form opens
+  ok    custom product resolved after save
+
+[5] main menu views
+  ok    left drawer opens
+  ok    inventory lists 2 products
+  ok    restock list populated
+  ok    history has entries
+
+[6] settings
+  ok    settings drawer opens
+  ok    7 setting categories
+  ok    56 setting rows
+  ok    toggle persists
+  ok    theme picker applies a palette
+
+[7] CSV import
+  ok    import sheet opens
+  ok    import reports 1 new + 1 updated
+  ok    imported product resolvable
+  ok    imported price applied
+
+[8] hardware-back hook
+  ok    __hsHandleBack defined
+  ok    back hook returns false when nothing open
+
+ALL CHECKS PASSED
+=== tests/theme-splash.js
+
+[1] splash screen renders and animates
+  ok    splash element present at boot
+  ok    splash covers the app (z-index above 70)
+  ok    splash starts before the draw class
+  ok    author credit comes first
+  ok    exact credit text
+  ok    draw animation class applied
+  ok    logo is an SVG that draws itself
+  ok    4 drawable stroke paths
+  ok    every stroke path declares pathLength (dash animation)
+  ok    filled "T" finish layer exists
+  ok    wordmark splits into letters
+  ok    subtitle present
+  ok    shine sweep fires after the draw
+  ok    splash removes itself when finished
+  ok    app marked as revealed
+
+[2] splash can be skipped by tapping
+  ok    second instance has a splash
+  ok    tap dismisses it early
+
+[3] reduced-motion path
+  ok    reduced-motion credits are shown without animation
+  ok    and clears quickly
+
+[4] theme system
+  ok    16 themes offered
+  ok    current theme marked selected
+  ok    each card shows colour swatches
+  ok    trill palette applied at boot
+  ok    accent switched to forest green
+  ok    background switched
+  ok    theme persisted to storage
+  ok    picker re-renders with new selection
+  ok    theme-colour meta updated
+  ok    light theme sets light background
+  ok    light theme darkens text
+  ok    light theme gets a softer shadow
+
+[5] all themes are complete
+  ok    every theme defines the full palette
+
+[6] motion classes present
+  ok    theme card animates on select
+  ok    list stagger utility defined
+  ok    ripple keyframes defined
+  ok    press animation on buttons
+  ok    stock number pop defined
+
+SPLASH + THEMES OK
+=== tests/tobacco.js
+TOBACCO LOOKUP OK
+=== tests/torch-recognition.js
+
+[1] torch is ON while the scanner is armed
+  ok    torch turned on at camera start
+
+[2] it blanks on a scan, then relights when ready
+  ok    torch switched OFF on read
+  ok    sheet opened for review
+  ok    stays off while reviewing (not armed)
+  ok    relights once the scanner is ready again
+
+[3] steady-off setting leaves the torch alone
+  ok    steady torch setting exists
+  ok    no steady relight when the setting is off
+
+[4] advanced recognition is configurable
+  ok    advanced recognition toggle present
+  ok    2D symbology toggle present
+  ok    advanced is on by default
+  ok    2D is off by default
+
+[5] decoder hints
+  ok    ZXing reader got a hints map
+  ok    retail formats requested
+  ok    TRY_HARDER enabled when advanced
+  ok    faster scan cadence in advanced mode
+
+[6] UPC-E and EAN-13 fold onto the catalog entry
+  ok    EAN-13 with leading zero matches the UPC-A entry
+  ok    symbology shown to the user
+  ok    raw reading shown when normalised
+
+[7] the same product scanned in two symbologies is one stock line
+  ok    one canonical key only
+  ok    quantities accumulated
+
+[8] the copy change
+  ok    footer reads 'built for Inventory'
+  ok    no longer says Harry's Gas Stations in the footer
+
+TORCH + RECOGNITION OK
